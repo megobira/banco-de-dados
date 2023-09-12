@@ -39,3 +39,7 @@ GROUP BY produto HAVING SUM(receita) > '10.000' ORDER BY produto;
 SELECT autores.nome AS autor, COUNT(livros.id) AS quantidade_livros FROM autores
 LEFT JOIN livros ON autores.id = livros.autor_id 
 GROUP BY autores.id HAVING COUNT(livros.id) > '2';
+
+-- 11
+SELECT livros.titulo AS livro, autores.nome AS autor FROM livros
+JOIN autores ON livros.autor_id = autores.id ORDER BY autor, livro;
