@@ -30,3 +30,7 @@ GROUP BY curso ORDER BY curso;
 -- 08
 SELECT produto, AVG(receita) AS media_de_receita FROM vendas
 GROUP BY produto ORDER BY produto;
+
+-- 09
+SELECT produto, SUM(receita) AS total_receita FROM vendas
+GROUP BY produto HAVING SUM(receita) > '10.000' ORDER BY produto;
