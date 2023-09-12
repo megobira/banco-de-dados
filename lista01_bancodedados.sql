@@ -26,3 +26,7 @@ GROUP BY autores.id ORDER BY autores.id;
 -- 07
 SELECT curso, COUNT(aluno_id) AS aulonos_matriculados FROM matriculas
 GROUP BY curso ORDER BY curso;
+
+-- 08
+SELECT produto, AVG(receita) AS media_de_receita FROM vendas
+GROUP BY produto ORDER BY produto;
