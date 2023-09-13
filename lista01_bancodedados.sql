@@ -69,3 +69,7 @@ WHERE id = (
    ORDER BY COUNT(*) desc
    LIMIT 1
 );
+
+-- 17
+SELECT produto, SUM(receita) AS receita_menor FROM vendas
+GROUP BY produto ORDER BY receita_menor LIMIT 1;
