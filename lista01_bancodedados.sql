@@ -59,3 +59,13 @@ RIGHT JOIN alunos ON matriculas.aluno_id = alunos.id ORDER BY curso, aluno;
 --15
 SELECT alunos.nome AS aluno, matriculas.curso FROM matriculas
 INNER JOIN alunos ON matriculas.aluno_id = alunos.id ORDER BY aluno, curso;
+
+-- 16
+SELECT nome FROM autores
+WHERE id = (
+   SELECT autor_id
+   FROM livros
+   GROUP BY autor_id
+   ORDER BY COUNT(*) desc
+   LIMIT 1
+);
