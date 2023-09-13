@@ -43,3 +43,8 @@ GROUP BY autores.id HAVING COUNT(livros.id) > '2';
 -- 11
 SELECT livros.titulo AS livro, autores.nome AS autor FROM livros
 JOIN autores ON livros.autor_id = autores.id ORDER BY autor, livro;
+
+-- 12
+SELECT alunos.nome AS aluno, matriculas.curso FROM alunos 
+JOIN matriculas ON alunos.id = matriculas.aluno_id ORDER BY aluno, curso;
+--
