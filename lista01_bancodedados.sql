@@ -73,3 +73,8 @@ WHERE id = (
 -- 17
 SELECT produto, SUM(receita) AS receita_menor FROM vendas
 GROUP BY produto ORDER BY receita_menor LIMIT 1;
+
+-- 19
+SELECT alunos.nome AS aluno, COUNT(matriculas.id) AS quantidade_matriculas FROM alunos
+LEFT JOIN matriculas ON alunos.id = matriculas.aluno_id 
+GROUP BY alunos.id ORDER BY aluno;
