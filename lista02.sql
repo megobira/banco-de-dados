@@ -111,5 +111,18 @@ BEGIN
 END //
 DELIMITER ;
 
+-- 08
+DELIMITER //
+CREATE PROCEDURE sp_AutorMaisAntigo(OUT autorMaisAntigo VARCHAR(255))
+BEGIN
+    SELECT CONCAT(Nome, ' ', Sobrenome) INTO autorMaisAntigo
+    FROM Autor
+    ORDER BY Data_Nascimento ASC
+    LIMIT 1;
+END //
+DELIMITER ;
+
+CALL sp_AutorMaisAntigo(@autorMaisAntigo);
+SELECT @autorMaisAntigo;
 CALL sp_AdicionarLivro('Novo Livro', 1, 2023, 300, 2, @mensagem);
 SELECT @mensagem;
