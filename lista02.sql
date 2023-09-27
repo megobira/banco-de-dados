@@ -126,3 +126,14 @@ CALL sp_AutorMaisAntigo(@autorMaisAntigo);
 SELECT @autorMaisAntigo;
 CALL sp_AdicionarLivro('Novo Livro', 1, 2023, 300, 2, @mensagem);
 SELECT @mensagem;
+
+-- 09
+DELIMITER //
+CREATE PROCEDURE sp_ListarAutoresNovo()
+BEGIN
+    -- Esta stored procedure seleciona somente os nomes dos autores da tabela autor 
+    SELECT Autor.Nome FROM Autor;
+END //
+DELIMITER ;
+
+CALL sp_ListarAutoresNovo();
