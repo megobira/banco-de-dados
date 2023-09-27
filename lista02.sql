@@ -21,3 +21,17 @@ DELIMITER ;
 
 CALL sp_LivrosPorCategoria ('Romance');
 CALL sp_LivrosPorCategoria ('Autoajuda');
+
+-- 03
+DELIMITER //
+CREATE PROCEDURE sp_ContarLivrosPorCategoria(IN categoriaNome VARCHAR(100), OUT total INT)
+BEGIN
+    SELECT COUNT(*) INTO total
+    FROM Livro
+    INNER JOIN Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
+    WHERE Categoria.Nome = categoriaNome;
+END //
+DELIMITER ;
+
+CALL sp_ContarLivrosPorCategoria('Autoajuda', @total);
+SELECT @total;
