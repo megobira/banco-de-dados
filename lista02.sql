@@ -91,3 +91,25 @@ DELIMITER ;
 
 CALL sp_TitulosPorCategoria('Ficção Científica');
 
+-- 07
+drop PROCEDURE sp_AdicionarLivro;
+DELIMITER //
+CREATE PROCEDURE sp_AdicionarLivro(IN novoTitulo VARCHAR(255), IN novaEditoraID INT, IN novoAno INT, IN novoNumPaginas INT, IN novaCategoriaID INT, OUT mensagem VARCHAR(255))
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SET mensagem = 'Erro ao adicionar o livro!';
+    END;
+
+    START TRANSACTION;
+    INSERT INTO Livro (Titulo, Editora_ID, Ano_Publicacao, Numero_Paginas, Categoria_ID)
+    VALUES (novoTitulo, novaEditoraID, novoAno, novoNumPaginas, novaCategoriaID);
+    COMMIT;
+
+    SET mensagem = 'Livro adicionado!';
+END //
+DELIMITER ;
+
+CALL sp_AdicionarLivro('Novo Livro', 1, 2023, 300, 2, @mensagem);
+SELECT @mensagem;
