@@ -35,3 +35,19 @@ DELIMITER ;
 
 CALL sp_ContarLivrosPorCategoria('Autoajuda', @total);
 SELECT @total;
+
+-- 04
+DELIMITER //
+CREATE PROCEDURE sp_VerificarLivrosCategoria(IN categoriaNome VARCHAR(100), OUT possuiLivros BOOLEAN)
+BEGIN
+    SELECT EXISTS (
+        SELECT 1
+        FROM Livro
+        INNER JOIN Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
+        WHERE Categoria.Nome = categoriaNome
+    ) INTO possuiLivros;
+END //
+DELIMITER ;
+
+CALL sp_VerificarLivrosCategoria('Ciência', @possuiLivros);
+SELECT @possuiLivros;
